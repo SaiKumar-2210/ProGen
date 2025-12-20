@@ -1,1 +1,1 @@
-print("Hello world")
+print(set([2,1])==set([2,1]))
