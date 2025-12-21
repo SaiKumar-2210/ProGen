@@ -5,12 +5,14 @@ import './App.css'
 import "tailwindcss";
 import Header from './components/header';
 import Content from './components/content';
+import Searchbar from './components/searchbar';
 function App() {
 
   return (
     <>
     <Header></Header>
     <Content></Content>
+    <Searchbar></Searchbar>
     </>
   )
 }
