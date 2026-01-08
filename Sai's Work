@@ -1,2 +1,3 @@
 18-12-25: Gone through various tailwind classes, downloaded a image from flaticon.com for logo. Created a non functional header
 20-12-2025: Added hover styles on navbar. In body added few details
+08-01-2026: created backend setup with with express. Successfully implemented transfer of document from backend to react and shown preview
