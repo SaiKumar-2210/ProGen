@@ -6,10 +6,24 @@ const backendURL= "http://localhost:3000";
 function Searchbar(){
     const [loading,setLoading]=useState(false);
     const container= useRef(null);
-    const handlePreview = async ()=>{
+    const [title,setTitle]= useState("");
+
+    const handleChange= (event)=>{
+        setTitle(event.target.value);
+    }
+
+    const handlePreview = async (e)=>{
+        e.preventDefault();
         setLoading(true);
         try{
-            const respone = await fetch("http://localhost:5000/");
+            const respone = await fetch("http://localhost:5000/",{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({Search:title})
+            }
+            );
             const data=await respone.json();
 
             const byChar=atob(data.filedata);
@@ -32,8 +46,17 @@ function Searchbar(){
     return(
         <>
         <div className="place-self-center relative">
-            <input type="text" placeholder="Enter the topic" name="" id="" className="inline static placeholder:text-center w-xl px-3 h-12 rounded-4xl my-10 border-2 border-slate-500 pr-20"/>
-            <button className="cursor-pointer" onClick={handlePreview}><img className="size-11 absolute right-1 top-10.5" src={sendicon} alt="" /></button>    
+            <form onSubmit={handlePreview}>
+            <input 
+                type="text" 
+                placeholder="Enter the topic"
+                name="Search" id="none" 
+                value={title} 
+                onChange={handleChange}
+                className="inline static placeholder:text-center w-xl px-3 h-12 rounded-4xl my-10 border-2 border-slate-500 pr-20"
+            />
+            <button className="cursor-pointer" type="submit"><img className="size-11 absolute right-1 top-10.5" src={sendicon} alt="" /></button>
+            </form>    
         </div>
         <div className="h-10 w-screen border-4" ref={container}></div>
             
